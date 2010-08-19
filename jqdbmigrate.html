@@ -1,0 +1,33 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="jqdbmigrate.js"></script>
+
+<script type="text/javascript">
+
+// do not ever change migrations that have been deployed! Only append new migrations!
+var migrations = [
+    function (t) {
+      t.executeSql("create table one (foo varchar);");
+    },
+  
+    function (t) {
+      t.executeSql("create table two (bar varchar);");
+    }
+];
+
+// to use, open the database, then migrate it to the latest version
+var db = openDatabase("test_db", "", "Test Database", 100000);
+$.dbmigrate(
+    db, 
+    migrations,
+    function (err) {
+        if (console.error) console.error("Error!: %o", err);
+    }
+);
+
+</script>
+</head>
+<body>
+</body>
+</html>
