@@ -8,7 +8,7 @@
 			if (migrations[i]){       // i > migrations.length is undefined, our basecase
 				db.changeVersion(
 					db.version,           // current version
-					String(i),            // new fersion
+					String(i),            // new version
 					migrations[i],        // migrate-to-new-version function
 					error,                // error-while-migrating function
 					function () {m(i+1);} // when-migration-is-finished, we recurse.
